@@ -1,0 +1,49 @@
+<!--<p id="notice"><%= notice %></p>-->
+<div class = "hero-unit">	
+	<h1>
+	  <%= @team.team_name %>
+	</h1>
+	<br/>
+	<p>
+	  <strong>Total score:</strong>
+	  <%= @team.total_score %>
+	</p>
+
+	<p>
+	  <strong>Turn number:</strong>
+	  <%= @team.turn_number %>
+	</p>
+</div>
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back To Game Setup', game_path(@team.game) %>
+<hr />
+<h3>Players</h3>
+
+
+<!--For each player associated with this team
+	Present player attributes-->
+<% @team.players.each do |player| %>
+
+	<p>
+		<strong>Player:</strong>
+		<%= player.playerName %>
+	</p>
+
+	<p>
+		<strong>Score:</strong>
+		<%= player.pointsScored %>
+	</p>
+
+	<p>
+		<strong>Turn Number:</strong>
+		<%= player.turn_number %>	
+	</p>
+
+	<%= link_to 'Edit Player', edit_player_path(player) %> |
+	<%= link_to 'Remove Player', player, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<hr />
+<% end %>
+
+<% if @team.teamSize != @team.game.numberOfPlayers %>
+	<%= link_to 'Add Player', "#{new_player_path}/#{@team.id}" %>
+<% end %>
