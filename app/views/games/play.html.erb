@@ -1,0 +1,12 @@
+<h1><%= @game.gameName %><h1>
+<div class="row-fluid">
+	<div id="scoreBoard" class="span5">
+		<h3>Score Board</h3>
+
+	</div>
+	<div id ="upToBat" class = "span4">
+		<h3><%= "#{@game.getTeam.teamName}"%></h3>
+		<h4><%="Throwing: #{@game.getPlayer.playerName}"%></h4>
+		<%= link_to "Add Score",{controller: :games,action: :play,id:@game.id} %>
+	</div>
+</div>
