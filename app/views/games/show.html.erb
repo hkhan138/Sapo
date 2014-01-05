@@ -98,5 +98,5 @@
 
 <%= link_to 'Add Team', "#{new_team_path}/#{@game.id}"%>
 <% if @game.teamsReady %>
-| <%= link_to 'Start Game', '/' %>
+| <%= link_to 'Start Game', {controller: :games,action: :play,id:@game.id} %>
 <%end%>
