@@ -28,6 +28,9 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
+    @game.setWinnerTeam(nil)
+    @game.setPlayerTurn(-1)
+    @game.setTeamTurn(-1)
 
     respond_to do |format|
       if @game.save
@@ -64,7 +67,16 @@ class GamesController < ApplicationController
     end
   end
 
-  
+  def play
+    @game = Game.find_by_id(params[:id])
+    @game.nextTeam
+    if @game.teamTurn == 0
+      @game.nextPlayer
+    end
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
@@ -75,4 +87,5 @@ class GamesController < ApplicationController
     def game_params
       params.require(:game).permit(:game_name, :score_limit, :number_of_players, :winner_team)
     end
+
 end
