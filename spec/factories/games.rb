@@ -5,6 +5,15 @@ FactoryGirl.define do
     game_name "Battle of The Sexes"
     score_limit 600
     number_of_players 2
-    winner_team nil
+    player_turn -1
+  	team_turn -1
+  end
+
+  factory :game_with_multiple_teams, parent: :game do
+  	after(:create) do |game|
+  		FactoryGirl.create(:team, game:game)
+  		FactoryGirl.create(:team, game:game)
+  		FactoryGirl.create(:team, game:game)
+  	end
   end
 end
