@@ -14,6 +14,7 @@ Sapo::Application.routes.draw do
   get "/teams/new/:id", controller:"teams",action: :new
   get "/players/new/:id", controller:"players",action: :new
   
+  get "/games/play/:id", controller:"games",action: :play, as: :play
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
