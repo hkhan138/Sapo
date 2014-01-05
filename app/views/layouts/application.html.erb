@@ -59,17 +59,26 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sapo Stats</li>
-              <li><%= link_to "Top Scoring Games", "/path1"  %></li>
-              <li><%= link_to "Top Scoring Teams", "/path2"  %></li>
-              <li><%= link_to "Top Scoring Players", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+        
+        <% unless params[:action] == "play" %>
+          <div class="span3">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+                <li class="nav-header">Sapo Stats</li>
+                <li><%= link_to "Top Scoring Games", "/path1"  %></li>
+                <li><%= link_to "Top Scoring Teams", "/path2"  %></li>
+                <li><%= link_to "Top Scoring Players", "/path3"  %></li>
+              </ul>
+            </div><!--/.well -->
+          </div><!--/span-->
+        <% end %>
+
+        <%if params[:action] == "play"%>
+        <div class="span12">
+        
+        <%else%>
         <div class="span9">
+        <% end %>  
           <div id = "content">
             <%= bootstrap_flash %>
             <%= yield %>
