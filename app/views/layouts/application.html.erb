@@ -49,8 +49,14 @@
           <a class="brand" href="/">Sapo Manager</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "How To Use SM", "/path1"  %></li>
-              <li><%= link_to "What Is Sapo", "/path2"  %></li>
+              <% if params[:action] == "play" || params[:action] == "winner" %>
+                <li><%= link_to "New Game", new_game_path  %></li>
+                <li><%= link_to "Restart", {controller: "games",action: :restart,id: @game.id}  %></li>
+                <li><%= link_to "End Game", @game, method: :delete, data:{ confirm: 'Are you sure?'}  %></li>
+              <% else %>
+                <li><%= link_to "How To Use SM", "/path1"  %></li>
+                <li><%= link_to "What Is Sapo", "/path2"  %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
