@@ -29,8 +29,8 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.setWinnerTeam(nil)
-    @game.setPlayerTurn(-1)
-    @game.setTeamTurn(-1)
+    @game.setPlayerTurn(0)
+    @game.setTeamTurn(0)
 
     respond_to do |format|
       if @game.save
@@ -62,20 +62,51 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url }
+      format.html { redirect_to '/' }
       format.json { head :no_content }
     end
   end
 
   def play
     @game = Game.find_by_id(params[:id])
-    @game.nextTeam
-    if @game.teamTurn == 0
-      @game.nextPlayer
+  end
+
+  def addPoints
+    @game = Game.find_by_id(params[:id])
+    
+    @game.getPlayer.addToScore(params[:points].to_i)
+    
+    if @game.save
+      @game.reload
+      if @game.getTeam.totalScore >= @game.score_limit
+        @game.setWinnerTeam(@game.getTeam.id)
+        redirect_to action: :winner
+      else
+        @game.nextTeam
+        redirect_to action: :play
+      end
+
+    else
+      format.html {render play_game_path}
+      format.json { render json: @game.errors, status: :unprocessable_entity}
     end
   end
 
+  def winner
+    @game = Game.find_by_id(params[:id])
+  end
 
+  def restart
+    @game = Game.find_by_id(params[:id])
+    
+    @game.setTeamTurn(0)
+    @game.setPlayerTurn(0)
+    @game.setWinnerTeam(nil)
+    @game.clearTeamScore
+
+    redirect_to action: :play
+
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
