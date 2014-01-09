@@ -1,0 +1,16 @@
+
+<div class = "hero-unit">
+	<h1>Team <%=@game.getWinner.teamName%> Wins!</h1>
+</div>
+
+<p>
+	Congratulations You have just beat your friends at a game of Sapo! See your team's  contributions to the game below.
+</p>
+
+<h3>Top Scorers On Team</h3>
+
+<ol>
+<% @game.getWinner.getPlayersInOrder.each do |players|%>
+	<li><strong><%= players.playerName%></strong>:<%= players.score %></li>
+<%end%>
+</ol>
