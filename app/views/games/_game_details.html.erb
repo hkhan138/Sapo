@@ -1,0 +1,29 @@
+<!---Show Game Details-->
+<p>
+	<strong>Game name:</strong>
+  <%= @game.gameName %>
+</p>
+
+<p>
+  <strong>Score limit:</strong>
+  <%= @game.scoreLimit %> pts
+</p>
+
+<p>
+  <strong>Number of players on each Team:</strong>
+  <%= @game.numberOfPlayers %> 
+</p>
+
+<!-- IF a Winner is present we show that there is a winner -->
+<% if @game.winnerTeam.present? %>
+	<p>
+	  <strong>Winning team:</strong>
+	  <%= @game.getWinner.teamName %>
+	</p>
+<% else %>
+
+<%= link_to 'Edit', edit_game_path %>
+<%end %>
+<!--< link_to 'Back', games_path >-->
+<!--End Game Details-->
+<hr/>
