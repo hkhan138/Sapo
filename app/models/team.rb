@@ -7,8 +7,6 @@ class Team < ActiveRecord::Base
 		self.total_score = updatedScore
 		self.save
 	end
-
-	#getters
 	
 	def teamName
 		self.team_name
@@ -21,5 +19,14 @@ class Team < ActiveRecord::Base
 	def teamSize
 		self.players.size
 	end
- 
+	
+	def getPlayersInOrder
+		self.players.order(score: :desc)
+	end 
+
+	def clearPlayersScore
+		self.players.each do |player|
+			player.reduceFromScore(player.pointsScored)
+		end
+	end
 end
