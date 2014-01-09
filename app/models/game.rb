@@ -27,6 +27,14 @@ class Game < ActiveRecord::Base
     self.teams[self.teamTurn]
   end
 
+  def getWinner
+    self.teams.find_by_id(self.winner_team)
+  end
+
+  def getTeamsInScoreOrder
+    self.teams.order(total_score: :desc)
+  end
+
   def getPlayer
     self.teams[self.teamTurn].players[self.playerTurn]
   end
@@ -81,21 +89,45 @@ class Game < ActiveRecord::Base
     self.save
   end
   
-
   def nextPlayer
-    self.setPlayerTurn((self.player_turn + 1)%self.numberOfPlayers)
+    self.player_turn += 1
+    self.save
+    self.reload
+    
+    if self.player_turn == self.numberOfPlayers
+      self.player_turn = 0
+      self.save
+    end
   end
 
   def nextTeam
-    self.setTeamTurn( (self.team_turn + 1)%self.numberOfTeams)
+    self.team_turn += 1
+    self.save
+    self.reload
+    
+    if self.team_turn == self.numberOfTeams
+      self.team_turn = 0
+      self.save
+      self.nextPlayer
+    end
   end
 
-  
-  def teamsReady
+  def clearTeamScore
     self.teams.each do |team|
-      if team.teamSize != self.numberOfPlayers
-        return false
+      team.clearPlayersScore
+    end
+    self.save
+    
+  end
+  def teamsReady
+    if self.numberOfTeams > 1
+      self.teams.each do |team|
+        if team.teamSize != self.numberOfPlayers
+          return false
+        end
       end
+    else
+      return false
     end
     return true
   end
