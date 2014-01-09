@@ -2,101 +2,15 @@
 
 <div class = "hero-unit">
 	<h1>Game Setup</h1>
-	<p>
 </div>
 
-  <strong>Game name:</strong>
-  <%= @game.gameName %>
-</p>
+<%= render 'game_details' %>
+<%= render 'team_details' %>
 
-<p>
-  <strong>Score limit:</strong>
-  <%= @game.scoreLimit %> pts
-</p>
 
-<p>
-  <strong>Number of players on each Team:</strong>
-  <%= @game.numberOfPlayers %> 
-</p>
-
-<!-- IF a Winner is present we show that there is a winner -->
-<% if @game.winnerTeam.present? %>
-	<p>
-	  <strong>Winner team:</strong>
-	  <%= @game.winnerTeam %>
-	</p>
-<% end %>
-
-<%= link_to 'Edit', edit_game_path %>
-<!--< link_to 'Back', games_path >-->
-<hr/>
-
-<h3>Current Teams</h3>
-
-<!--If there are no teams for the game we send out a warning-->
-<% if @game.teams.empty? %>
-	<div class ="alert">
-		<p><strong>Warning:</strong> 
-			There are currently no teams ready to play
-		</p>
-	</div>
-<% else %>
-	
-	<!-- If there is only one team a warning notice appears -->
-	<% if @game.numberOfTeams == 1 %>
-		<div class ="alert">
-			<p><strong>Warning:</strong> 
-				You must add at least one more team to play
-			</p>
-		</div>	
+<% if !@game.winnerTeam.present? %>
+	<%= link_to 'Add Team', "#{new_team_path}/#{@game.id}"%>
+	<% if @game.teamsReady %>
+	| <%= link_to 'Start Game', {controller: :games,action: :play,id:@game.id} %>
 	<% end %>
-
-
-<!--For each team associated with this game
-	Present the team name and the team score-->
-
-	<% @game.teams.each	do |team| %>
-		
-		<p>
-			<strong>Team:</strong>
-			<%= team.teamName %>
-		</p>
-
-		<p>
-			<strong>Total Score:</strong>
-			<%= team.totalScore %>
-		</p>
-
-		<!--If the team is low on players it displays a notice-->
-		<% if team.teamSize < @game.numberOfPlayers %>
-			<div class ="alert">
-				<p><strong>Warning:</strong> 
-				Number Of Players That Must Be Added: <%= @game.numberOfPlayers - team.teamSize %>
-				</p>
-			</div>
-		<% end %>
-
-		<!--If the team is over-->
-		<% if team.teamSize > @game.numberOfPlayers %>
-			<div class ="alert">
-				<p><strong>Warning:</strong> 
-				Number Of Players That Must Be Removed: <%= team.teamSize - @game.numberOfPlayers %>
-				</p>
-			</div>
-		<% end %>
-
-
-
-		<%= link_to 'Roster', team_path(team)  %> |
-		<%= link_to 'Edit Team', edit_team_path(team) %> |
-		<%= link_to 'Remove Team', team, method: :delete, data: { confirm: 'Are you sure?' } %>
-		<hr />
-	<% end %>
-
 <% end %>
-
-
-<%= link_to 'Add Team', "#{new_team_path}/#{@game.id}"%>
-<% if @game.teamsReady %>
-| <%= link_to 'Start Game', {controller: :games,action: :play,id:@game.id} %>
-<%end%>
