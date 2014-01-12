@@ -20,6 +20,9 @@ class Team < ActiveRecord::Base
 		self.players.size
 	end
 	
+	def getGame
+		self.game
+	end
 	def getPlayersInOrder
 		self.players.order(score: :desc)
 	end 
