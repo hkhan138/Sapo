@@ -1,0 +1,22 @@
+<h1>Top Scoring Games</h1>
+<ol>
+<% @games.each do |game|%>	
+		<li>
+			<ul>
+				<li>
+					<%= link_to(game) do %>
+						<%=game.gameName%>
+					<%end%>
+				</li>
+
+				<li>Score Limit <%=game.score_limit%> pts</li>
+				<li>Game Won With: 
+					<%= link_to (game.winnerTeam) do %>
+						<%= game.winnerTeam.total_score %> pts	
+					<% end %>
+				</li>
+			</ul>
+		</li>
+		<hr/>
+<% end %>
+</ol>
