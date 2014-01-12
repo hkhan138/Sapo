@@ -1,0 +1,25 @@
+<h1>Top Scoring Teams</h1>
+<ol>
+<% @teams.each do |team|%>
+	
+	<% unless !team.getGame.present? %>
+		<li>
+			<ul>
+				<li>
+					<%= link_to(team) do %>
+						<%=team.teamName%>
+					<%end%>
+				</li>
+
+				<li>Scored <%=team.totalScore%>pts</li>
+				<li>In Game: 
+					<%= link_to(team.getGame) do %>
+						<%=team.getGame.gameName%>
+					<% end %>
+				</li>
+			</ul>
+		</li>
+		<hr/>
+	<% end %>
+<% end %>
+</ol>
