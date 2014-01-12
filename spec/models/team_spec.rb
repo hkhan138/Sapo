@@ -44,4 +44,6 @@ describe Team do
 		@team.total_score.should be == 100
 
 	end
+	
+
 end
