@@ -1,0 +1,25 @@
+<!--For each player associated with this team
+	Present player attributes-->
+<% @team.players.each do |player| %>
+
+	<p>
+		<strong>Player:</strong>
+		<%= player.playerName %>
+	</p>
+
+	<p>
+		<strong>Score:</strong>
+		<%= player.pointsScored %>
+	</p>
+
+	<p>
+		<strong>Turn Number:</strong>
+		<%= player.turn_number %>	
+	</p>
+
+<% unless @team.game.winnerTeam.present?%>
+	<%= link_to 'Edit Player', edit_player_path(player) %> |
+	<%= link_to 'Remove Player', player, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+	<hr />
+<% end %>
