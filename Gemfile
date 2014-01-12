@@ -34,6 +34,7 @@ end
 
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 gem 'twitter', '~> 5.4.1'
+gem 'oauth', '~> 0.4.7'
 
 group :development, :test do
 	gem 'rspec-rails', '~> 2.0'
