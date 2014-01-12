@@ -14,35 +14,17 @@
 	  <%= @team.turn_number %>
 	</p>
 </div>
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back To Game Setup', game_path(@team.game) %>
+
+<%unless @team.game.winnerTeam.present?%>
+	<%= link_to 'Edit', edit_team_path(@team) %> |
+<% end %>
+<%= link_to 'Back To Game', game_path(@team.game) %>
+
+
 <hr />
 <h3>Players</h3>
 
-
-<!--For each player associated with this team
-	Present player attributes-->
-<% @team.players.each do |player| %>
-
-	<p>
-		<strong>Player:</strong>
-		<%= player.playerName %>
-	</p>
-
-	<p>
-		<strong>Score:</strong>
-		<%= player.pointsScored %>
-	</p>
-
-	<p>
-		<strong>Turn Number:</strong>
-		<%= player.turn_number %>	
-	</p>
-
-	<%= link_to 'Edit Player', edit_player_path(player) %> |
-	<%= link_to 'Remove Player', player, method: :delete, data: { confirm: 'Are you sure?' } %>
-	<hr />
-<% end %>
+<%= render 'player_details' %>
 
 <% if @team.teamSize != @team.game.numberOfPlayers %>
 	<%= link_to 'Add Player', "#{new_player_path}/#{@team.id}" %>
