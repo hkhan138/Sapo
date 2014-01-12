@@ -26,6 +26,10 @@ class Player < ActiveRecord::Base
 		self.save
 	end
 
+	def getTeam
+		self.team
+	end
+
 	def updateMyTeam
 		if self.team.present?
 			self.team.updateTotalScore
