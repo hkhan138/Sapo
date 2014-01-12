@@ -60,6 +60,10 @@ class TeamsController < ApplicationController
     end
   end
 
+  def top_teams
+    @teams = Team.all.order(total_score: :desc).limit(20)
+  end
+
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
