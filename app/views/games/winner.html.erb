@@ -1,6 +1,6 @@
 
 <div class = "hero-unit">
-	<h1>Team <%=@game.getWinner.teamName%> Wins!</h1>
+	<h1>Team <%=@winner.teamName%> Wins!</h1>
 </div>
 
 <p>
@@ -10,7 +10,7 @@
 <h3>Top Scorers On Team</h3>
 
 <ol>
-<% @game.getWinner.getPlayersInOrder.each do |players|%>
+<% @winner.getPlayersInOrder.each do |players|%>
 	<li><strong><%= players.playerName%></strong>:<%= players.score %></li>
 <%end%>
 </ol>
