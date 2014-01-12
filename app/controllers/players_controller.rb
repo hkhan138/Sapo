@@ -60,6 +60,10 @@ class PlayersController < ApplicationController
     end
   end
 
+  def top_players
+    @players = Player.all().order(score: :desc).limit(20)
+  end
+
   # DELETE /players/1
   # DELETE /players/1.json
   def destroy
