@@ -99,4 +99,27 @@ describe Game do
  		game.getPlayer.should be == game.teams[0].players[0]
  	end
 
+ 	#setters
+ 	it "should set the game name" do
+ 		@game.setGameName("Test")
+ 		@game.gameName.should be == "Test"
+ 	end
+
+ 	it "should set the score limit" do
+ 		@game.setScoreLimit(1000)
+ 		@game.scoreLimit.should be == 1000
+ 	end
+
+ 	it "should set the number of players playing" do
+ 		@game.setNumberOfPlayers(15)
+ 		@game.numberOfPlayers.should be == 15
+ 	end
+
+ 	it "should set winning team" do
+ 		game = FactoryGirl.create(:game_with_multiple_teams)
+ 		game.setWinnerTeam(game.teams.first.id)
+ 		game.winnerTeam.id.should be == game.teams.first.id
+ 	end
+
+
 end
