@@ -27,10 +27,7 @@ class Game < ActiveRecord::Base
     self.teams[self.teamTurn]
   end
 
-  def getWinner
-    self.teams.find_by_id(self.winner_team)
-  end
-
+  
   def getTeamsInScoreOrder
     self.teams.order(total_score: :desc)
   end
