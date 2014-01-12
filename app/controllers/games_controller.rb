@@ -94,6 +94,7 @@ class GamesController < ApplicationController
 
   def winner
     @game = Game.find_by_id(params[:id])
+    @winner = @game.winnerTeam
   end
 
   def restart
@@ -105,7 +106,10 @@ class GamesController < ApplicationController
     @game.clearTeamScore
 
     redirect_to action: :play
+  end
 
+  def top_games
+    @games = Game.all.order(score_limit: :desc).limit(20)
   end
 
   private
