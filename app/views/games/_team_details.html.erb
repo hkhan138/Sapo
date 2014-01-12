@@ -55,10 +55,12 @@
 		<% end %>
 
 
-
-		<%= link_to 'Roster', team_path(team)  %> |
-		<%= link_to 'Edit Team', edit_team_path(team) %> |
-		<%= link_to 'Remove Team', team, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% unless @game.winnerTeam.present? %>
+			<%= link_to 'Roster', team_path(team)  %> |
+			<%= link_to 'Edit Team', edit_team_path(team) %> |
+			<%= link_to 'Remove Team', team, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%end%>
+		
 		<hr />
 	<% end %>
 
