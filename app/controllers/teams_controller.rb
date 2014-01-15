@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
 
     #assign turn number based on how many teams are present
     @game = Game.find_by_id(params[:game_id])
-    @team.turn_number = @game.teams.size
+    #@team.turn_number = @game.teams.size
 
     
     respond_to do |format|
