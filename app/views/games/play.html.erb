@@ -1,24 +1,25 @@
 <h1><%= @game.gameName %></h1>
 <div class="row-fluid">
-	<div id="scoreBoard" class="span5">
+	<div id="scoreBoard">
 		<h3>Score Board</h3>
 			
-			<p><strong>Team</strong></p>
-			<p class = "points"><strong>Points</strong></p>
-			<div class="clearfix"></div>
+		<p><strong>Team</strong></p>
+		<p class = "points"><strong>Points</strong></p>
+		<div class="clearfix"></div>
 
-		<% @game.getTeamsInScoreOrder.each do |team|%>
-			<p><strong><%="#{team.teamName}:"%></strong></p>
-			<p class="points"><%="#{team.totalScore}pts"%></p>
-			<div class="clearfix"></div>
-			
-		<% end %>
+			<% @game.getTeamsInScoreOrder.each do |team|%>
+				<p><strong><%="#{team.teamName}:"%></strong></p>
+				<p class="points"><%="#{team.totalScore}pts"%></p>
+				<div class="clearfix"></div>	
+			<% end %>
 	</div>
-	<div id ="upToBat" class = "span4">
+	
+	<div id ="upToBat">
 		<h3><%= "#{@game.getTeam.teamName}"%></h3>
 		<h4><%="Throwing: #{@game.getPlayer.playerName}"%></h4>
 		<p>Points to Win: <%=@game.scoreLimit-@game.getTeam.totalScore%>pts</p>
 		
 		<%= render 'form_addScore' %>
+		<%= render 'form_undo' %>
 	</div>
 </div>
