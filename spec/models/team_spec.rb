@@ -13,10 +13,6 @@ describe Team do
 		@team.total_score.should be == 0
 	end
 
-	it "should not have a number for it's turn" do 
-		@team.turn_number.should be_nil
-	end
-
 	it "should belong to a game" do 
 		game = FactoryGirl.create(:game)
 		game.teams << @team 
@@ -24,20 +20,13 @@ describe Team do
 		@team.game.should be_present
 	end
 
-	it "should have a turn number" do 
-		game = FactoryGirl.create(:game)
-		@team.turn_number = game.teams.size + 1
-		game.teams << @team
-
-		@team.turn_number.should be_present
-	end
-
+	
 	it "Should cumulate its player's score" do
 		player = FactoryGirl.create(:player)
 		@team.players << player 
 
 		@team.players.each do |player|
-			player.addToScore(100)
+			player.add_to_score(100)
 		end
 		
 		@team.reload
