@@ -12,16 +12,21 @@ class Player < ActiveRecord::Base
 		self.score
 	end
 
-	def turnNumber
-		self.turn_number
+	def prev_throw
+		self.previous_throw
 	end
 
-	def addToScore(number)
+	def set_prev_throw(number)
+		self.previous_throw = number
+		self.save
+	end
+
+	def add_to_score(number)
 		self.score += number
 		self.save
 	end
 
-	def reduceFromScore(number)
+	def reduce_from_score(number)
 		self.score -= number
 		self.save
 	end
