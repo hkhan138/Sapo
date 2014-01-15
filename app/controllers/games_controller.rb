@@ -71,10 +71,13 @@ class GamesController < ApplicationController
     @game = Game.find_by_id(params[:id])
   end
 
-  def addPoints
+  def add_points
     @game = Game.find_by_id(params[:id])
+    player = @game.getPlayer
+    points_scored = params[:points].to_i
     
-    @game.getPlayer.addToScore(params[:points].to_i)
+    player.add_to_score(points_scored)
+    player.set_prev_throw(points_scored)
     
     if @game.save
       @game.reload
@@ -90,6 +93,19 @@ class GamesController < ApplicationController
       format.html {render play_game_path}
       format.json { render json: @game.errors, status: :unprocessable_entity}
     end
+  end
+
+  def undo
+    @game = Game.find_by_id(params[:id])
+    player = @game.prevPlayer
+
+    if player.prev_throw.present?
+      player.reduce_from_score(player.prev_throw)
+    end
+
+    player.set_prev_throw(nil)
+    redirect_to action: :play
+
   end
 
   def winner
