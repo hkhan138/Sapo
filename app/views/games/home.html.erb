@@ -1,6 +1,11 @@
 <div class = "hero-unit">
 	<h1>Manage Your Sapo</h1>
-	<div class="btn btn-success">
-		<%=link_to 'New Game', new_game_path %>
+	
+	<div class ="linkTo">
+		<%=link_to (new_game_path) do %>
+			<div class="btn btn-inverse">
+				<span>New Game</span>
+			</div>
+		<% end %>
 	</div>
 </div>
