@@ -1,5 +1,6 @@
-<%= form_tag({controller: "games", action: "addPoints", id: @game.id}, method:"post") do %>
+<%= form_tag("/add_points/#{@game.id}", method:"post") do %>
 	<%= label_tag(:points,"Points Scored:") %>
 	<%= number_field_tag(:points) %>
+	<div class= "clearfix"></div>
 	<%= submit_tag("Add Points") %>
 <% end %>
