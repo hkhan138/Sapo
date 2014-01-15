@@ -12,10 +12,6 @@
 		<%= player.pointsScored %>
 	</p>
 
-	<p>
-		<strong>Turn Number:</strong>
-		<%= player.turn_number %>	
-	</p>
 
 <% unless @team.game.winnerTeam.present?%>
 	<%= link_to 'Edit Player', edit_player_path(player) %> |
