@@ -1,32 +1,34 @@
 <h1>Top Scoring Players</h1>
 <ol>
 <% @players.each do |player|%>
-	
 	<% unless !player.getTeam.present? ||  !player.getTeam.getGame.present? %>
-		<li>
-			<ul>
-				
-				<li>
-					<%= link_to(player) do %>
-						<%=player.playerName%>
-					<%end%>
-				</li>
-				<li>Scored <%=player.pointsScored%>pts</li>
-				
-				<li>On Team: 
-					<%= link_to(player.getTeam) do %>
-						<%=player.getTeam.teamName%>
-					<% end %>
-				</li>
-				
-				<li>In Game:
-					<%= link_to(player.getTeam.getGame) do %>
-						<%=player.getTeam.getGame.gameName%>
-					<%end%>
-				</li>
-			</ul>
-		</li>
-		<hr/>
-	<% end %>
+		<% unless !player.getTeam.getGame.winnerTeam.present? %>
+			<li>
+				<ul>
+					
+					<li>
+						<%= link_to(player) do %>
+							<%=player.playerName%>
+						<%end%>
+					</li>
+
+					<li>Scored <%=player.pointsScored%>pts</li>
+					
+					<li>On Team: 
+						<%= link_to(player.getTeam) do %>
+							<%=player.getTeam.teamName%>
+						<% end %>
+					</li>
+					
+					<li>In Game:
+						<%= link_to(player.getTeam.getGame) do %>
+							<%=player.getTeam.getGame.gameName%>
+						<%end%>
+					</li>
+				</ul>
+			</li>
+			<hr/>
+		<% end %>
+	<%end%>
 <% end %>
 </ol>
