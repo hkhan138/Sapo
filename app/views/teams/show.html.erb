@@ -1,19 +1,15 @@
 <!--<p id="notice"><%= notice %></p>-->
-<div class = "hero-unit">	
-	<h1>
-	  <%= @team.team_name %>
-	</h1>
-	<br/>
-	<p>
-	  <strong>Total score:</strong>
-	  <%= @team.total_score %>
-	</p>
 
-	<p>
-	  <strong>Turn number:</strong>
-	  <%= @team.turn_number %>
-	</p>
-</div>
+<h1>
+  <%= @team.team_name %>
+</h1>
+<br/>
+<p>
+  <strong>Total score:</strong>
+  <%= @team.total_score %>
+</p>
+
+
 
 <%unless @team.game.winnerTeam.present?%>
 	<%= link_to 'Edit', edit_team_path(@team) %> |
