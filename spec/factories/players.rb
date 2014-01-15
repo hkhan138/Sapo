@@ -4,6 +4,5 @@ FactoryGirl.define do
   factory :player do
     player_name "Steven"
     score 0
-    turn_number nil
   end
 end
