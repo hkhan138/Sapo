@@ -1,6 +1,8 @@
+
+/*#FC2121*/
 body {
   background-color: #fff;
-  color: #333;
+  color: #FA3744;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -24,9 +26,10 @@ a {
     color: #666;
   }
   &:hover {
-    color: #fff;
+    color: #FA6969;
     background-color: #000;
   }
+
 }
 
 div {
@@ -65,5 +68,32 @@ div {
   ul li {
     font-size: 12px;
     list-style: square;
+  }
+}
+
+
+h1{
+  color: #FA3744;
+}
+
+
+form{
+  label{
+    color: #FABC37;
+  }
+}
+
+p{
+  strong{
+    color: #FABC37;
+  }
+  
+}
+
+ol{
+  li{
+    strong{
+      color: #FABC37;
+    }
   }
 }
