@@ -1,5 +1,11 @@
-<h1>New game</h1>
+<div id="newView">
+	<h1>New Game</h1>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Back', {controller: :games, action: :home} %>
+	<%= link_to '/' do %>
+		<div class = "btn">
+			<span>Back</span>
+		</div>
+	<% end %>
+</div>
