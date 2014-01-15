@@ -1,8 +1,8 @@
 <!--<p id="notice"><%= notice %></p>-->
 
-<div class = "hero-unit">
-	<h1>Game Setup</h1>
-</div>
+
+<h1>Game Setup</h1>
+
 
 <%= render 'game_details' %>
 <%= render 'team_details' %>
@@ -11,6 +11,6 @@
 <% if !@game.winnerTeam.present? %>
 	<%= link_to 'Add Team', "#{new_team_path}/#{@game.id}"%>
 	<% if @game.teamsReady %>
-	| <%= link_to 'Start Game', {controller: :games,action: :play,id:@game.id} %>
+	| <%= link_to 'Start Game', "/play/#{@game.id}" %>
 	<% end %>
 <% end %>
