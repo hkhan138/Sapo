@@ -1,5 +1,7 @@
-<h1>New player</h1>
-<% @team = Team.find_by_id(params[:id]) %>
-<%= render 'form' %>
+<div class ="newView">
+	<h1>New player</h1>
+	<% @team = Team.find_by_id(params[:id]) %>
+	<%= render 'form' %>
 
-<%= link_to 'Back To Team', team_path(@team) %>
+	<%= link_to 'Back To Team', team_path(@team) %>
+</div>
