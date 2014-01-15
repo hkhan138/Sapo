@@ -13,13 +13,14 @@ Sapo::Application.routes.draw do
   root 'games#home'
   get "/teams/new/:id", controller:"teams",action: :new
   get "/players/new/:id", controller:"players",action: :new
-  get "/games/play/:id", controller:"games",action: :play, as: :play
-  get "/games/winner/:id",controller:"games",action: :winner, as: :winner
-  post "games/addPoints/:id", controller:"games",action: :addPoints, as: :addPoints
-  get "games/restart/:id", controller:"games",action: :restart, as: :restart
+  get "/play/:id", controller:"games",action: :play, as: :play
+  get "/winner/:id",controller:"games",action: :winner, as: :winner
+  post "/add_points/:id", controller:"games",action: :add_points, as: :add_points
+  get "/restart/:id", controller:"games",action: :restart, as: :restart
   get "/top_players", controller:"players",action: :top_players, as: :top_players
   get "/top_teams", controller:"teams",action: :top_teams, as: :top_teams
   get "/top_games", controller:"games",action: :top_games, as: :top_games
+  post "/undo/:id", controller:"games",action: :undo, as: :undo
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
