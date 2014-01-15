@@ -1,13 +1,18 @@
 
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 <div class = "hero-unit">
-	<h1>Team <%=@winner.teamName%> Wins!</h1>
+	<h1><%=@winner.teamName%> Wins!</h1>
 </div>
 
 <p>
 	Congratulations You have just beat your friends at a game of Sapo! See your team's  contributions to the game below.
 </p>
 
-<h3>Top Scorers On Team</h3>
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-hashtags="Sapo,MarcandoSapo,Sapogamemanager,Latino" data-url="test.com" data-related="Jim_Bedrock02" data-text="I just played a game of Sapo using the Sapo Game Manager!~ This is a test for an application">Tweet</a>
+
+<h3>Team Stats</h3>
 
 <ol>
 <% @winner.getPlayersInOrder.each do |players|%>
