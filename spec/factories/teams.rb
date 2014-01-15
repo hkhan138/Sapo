@@ -4,6 +4,5 @@ FactoryGirl.define do
   factory :team do
     team_name "Los Increibles"
     total_score 0
-    turn_number nil
   end
 end
