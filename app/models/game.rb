@@ -109,6 +109,33 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def prevPlayer
+
+    #then we go back to the last team and change the player index
+    if self.teamTurn == 0
+      prevTeam = self.numberOfTeams - 1
+      
+      #if we are looking at the first player in the set
+      if self.playerTurn == 0
+        #choose last player of previous set
+        prevPlayer = self.numberOfPlayers - 1
+      else
+        #choose the previous player within this set
+        prevPlayer = self.playerTurn - 1
+      end
+    #else just got to the last team
+    else
+      prevTeam = self.teamTurn - 1
+      prevPlayer = self.playerTurn
+    end
+
+    self.setTeamTurn(prevTeam)
+    self.setPlayerTurn(prevPlayer)
+    
+    self.teams[prevTeam].players[prevPlayer]
+  end
+
+
   def clearTeamScore
     self.teams.each do |team|
       team.clearPlayersScore
@@ -116,6 +143,7 @@ class Game < ActiveRecord::Base
     self.save
     
   end
+
   def teamsReady
     if self.numberOfTeams > 1
       self.teams.each do |team|
