@@ -20,6 +20,8 @@ Sapo::Application.routes.draw do
   get "/top_players", controller:"players",action: :top_players, as: :top_players
   get "/top_teams", controller:"teams",action: :top_teams, as: :top_teams
   get "/top_games", controller:"games",action: :top_games, as: :top_games
+  get "/how_to", controller:"information",action: :how_to, as: :how_to
+  get "/what",controller:"information",action: :what, as: :what
   post "/undo/:id", controller:"games",action: :undo, as: :undo
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
