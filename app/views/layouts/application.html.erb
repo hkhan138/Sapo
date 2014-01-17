@@ -54,8 +54,8 @@
                 <li><%= link_to "Restart", "/restart/#{@game.id}"  %></li>
                 <li><%= link_to "End Game", @game, method: :delete, data:{ confirm: "Are you sure? This will DELETE all of the teams' records"}  %></li>
               <% else %>
-                <li><%= link_to "How To Use SM", "/path1"  %></li>
-                <li><%= link_to "What Is Sapo", "/path2"  %></li>
+                <li><%= link_to "How To Use SM", "/how_to"  %></li>
+                <li><%= link_to "What Is Sapo", "/what"  %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
